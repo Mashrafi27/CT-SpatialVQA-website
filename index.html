@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CT-SpatialVQA: Lost in Volume</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --accent: #3a6bbf;
+      --accent-light: #dce5f5;
+      --accent-dark: #2a4f8f;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #222;
+    }
+
+    /* ── Nav ── */
+    .navbar {
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 6px rgba(0,0,0,.07);
+    }
+    .navbar-item { font-weight: 500; color: #444; }
+    .navbar-item:hover { color: var(--accent); background: transparent; }
+
+    /* ── Hero ── */
+    .hero-section {
+      background: linear-gradient(135deg, #f5f8ff 0%, #eef2fb 100%);
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+    }
+    .paper-title {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #1a1a2e;
+      max-width: 820px;
+      margin: 0 auto 0.5rem;
+    }
+    .paper-title span {
+      color: var(--accent);
+    }
+    .venue-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.2rem 0.75rem;
+      border-radius: 20px;
+      margin-bottom: 1.4rem;
+      letter-spacing: 0.03em;
+    }
+    .authors {
+      font-size: 1.05rem;
+      color: #333;
+      margin-bottom: 0.4rem;
+    }
+    .authors a { color: var(--accent); text-decoration: none; }
+    .authors a:hover { text-decoration: underline; }
+    .affiliations {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.8rem;
+    }
+    .aff-sup { font-size: 0.72em; vertical-align: super; }
+
+    /* ── Buttons ── */
+    .link-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; margin-bottom: 0.5rem; }
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .18s;
+    }
+    .link-btn.primary   { background: var(--accent); color: #fff; }
+    .link-btn.primary:hover { background: var(--accent-dark); color: #fff; }
+    .link-btn.secondary { background: #fff; color: var(--accent); border: 2px solid var(--accent); }
+    .link-btn.secondary:hover { background: var(--accent-light); }
+    .link-btn.dark      { background: #24292e; color: #fff; }
+    .link-btn.dark:hover { background: #111; color: #fff; }
+
+    /* ── Sections ── */
+    .content-section { padding: 3.5rem 1.5rem; }
+    .content-section:nth-child(even) { background: #f9fafc; }
+
+    .section-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--accent);
+      display: inline-block;
+    }
+
+    /* ── Abstract ── */
+    .abstract-box {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 1.4rem 1.6rem;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #333;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .stat-card {
+      background: #fff;
+      border: 1px solid #dde4f0;
+      border-radius: 10px;
+      padding: 1rem 1.6rem;
+      text-align: center;
+      min-width: 140px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+    .stat-number {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.82rem; color: #666; margin-top: 0.25rem; }
+
+    /* ── Figures ── */
+    .figure-container {
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+    .figure-container img {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 3px 16px rgba(0,0,0,.1);
+    }
+    .figure-caption {
+      font-size: 0.88rem;
+      color: #555;
+      margin-top: 0.75rem;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.55;
+    }
+    .figure-caption strong { color: #222; }
+
+    /* ── Results table ── */
+    .results-table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .results-table th {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.6rem 0.7rem;
+      text-align: center;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .results-table th.metric-col { text-align: left; min-width: 160px; }
+    .results-table td {
+      padding: 0.5rem 0.7rem;
+      text-align: center;
+      border-bottom: 1px solid #e8eef7;
+    }
+    .results-table td.metric-col { text-align: left; font-weight: 500; color: #444; }
+    .results-table tr:nth-child(even) td { background: #f4f7fc; }
+    .results-table .section-sep td {
+      background: #dce5f5 !important;
+      font-weight: 600;
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.3rem 0.7rem;
+    }
+    .best { font-weight: 700; color: var(--accent-dark); }
+
+    /* ── Contributions ── */
+    .contrib-list { list-style: none; padding: 0; }
+    .contrib-list li {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: flex-start;
+    }
+    .contrib-num {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .contrib-text { font-size: 0.97rem; line-height: 1.6; color: #333; }
+
+    /* ── Citation ── */
+    .bibtex-box {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .copy-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.82rem;
+      cursor: pointer;
+      margin-bottom: 0.6rem;
+      transition: background .18s;
+    }
+    .copy-btn:hover { background: var(--accent-dark); }
+
+    /* ── Footer ── */
+    footer {
+      background: #1a1a2e;
+      color: #aaa;
+      text-align: center;
+      padding: 1.4rem;
+      font-size: 0.85rem;
+    }
+    footer a { color: #7ea8f8; text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .paper-title { font-size: 1.45rem; }
+      .authors { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav class="navbar" role="navigation">
+  <div class="container">
+    <div class="navbar-menu is-active" style="justify-content:center; flex-wrap:wrap; gap:0.2rem; padding:0.4rem 0;">
+      <a class="navbar-item" href="#abstract">Abstract</a>
+      <a class="navbar-item" href="#method">Method</a>
+      <a class="navbar-item" href="#results">Results</a>
+      <a class="navbar-item" href="#citation">Citation</a>
+      <a class="navbar-item" href="https://github.com/Mashrafi27/CT-SpatialVQA" target="_blank">
+        <i class="fab fa-github" style="margin-right:4px"></i>Code
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero-section">
+  <div class="container">
+    <div class="venue-tag">MICCAI 2026</div>
+    <h1 class="paper-title">
+      Lost in Volume: The <span>CT-SpatialVQA</span> Benchmark for Evaluating
+      Semantic-Spatial Understanding of 3D Medical Vision–Language Models
+    </h1>
+
+    <p class="authors" style="margin-top:1.4rem;">
+      <a href="#">Mashrafi Monon</a><sup class="aff-sup">1</sup>&nbsp;&nbsp;
+      <a href="#">Umaima Rahman</a><sup class="aff-sup">1,2</sup>&nbsp;&nbsp;
+      <a href="#">Asif Hanif</a><sup class="aff-sup">1</sup>&nbsp;&nbsp;
+      <a href="#">Numan Saeed</a><sup class="aff-sup">1</sup>&nbsp;&nbsp;
+      <a href="#">Mohammad Yaqub</a><sup class="aff-sup">1</sup>
+    </p>
+    <p class="affiliations">
+      <sup class="aff-sup">1</sup>&nbsp;Mohamed Bin Zayed University of Artificial Intelligence, Abu Dhabi, UAE&nbsp;&nbsp;
+      <sup class="aff-sup">2</sup>&nbsp;New York University Abu Dhabi, Abu Dhabi, UAE
+    </p>
+
+    <div class="link-buttons">
+      <a class="link-btn primary" href="#" target="_blank">
+        <i class="fas fa-file-pdf"></i> Paper
+      </a>
+      <a class="link-btn dark" href="https://github.com/Mashrafi27/CT-SpatialVQA" target="_blank">
+        <i class="fab fa-github"></i> Code &amp; Dataset
+      </a>
+    </div>
+
+    <!-- Key stats -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-number">9,077</div>
+        <div class="stat-label">QA Pairs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1,601</div>
+        <div class="stat-label">CT Volumes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">8</div>
+        <div class="stat-label">VLMs Benchmarked</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">95%</div>
+        <div class="stat-label">Human Consensus</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">34%</div>
+        <div class="stat-label">Best Avg. Accuracy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ABSTRACT ══════════════ -->
+<section class="content-section" id="abstract">
+  <div class="container" style="max-width:820px;">
+    <div class="section-title">Abstract</div>
+    <div class="abstract-box">
+      Recent advances in 3D medical vision–language models have enabled joint reasoning over volumetric images
+      and text, showing strong performance in medical visual question-answering (VQA) and report generation.
+      Despite this progress, it remains unclear whether these models learn spatially grounded anatomy from 3D
+      volumes or rely primarily on learned priors and language correlations.
+      <br><br>
+      To address this gap, we introduce <strong>CT-SpatialVQA</strong>, a benchmark designed to evaluate
+      semantic–spatial reasoning in 3D CT data. The benchmark comprises <strong>9,077 clinically grounded
+      QA pairs</strong> derived from 1,601 radiology reports and CT volumes, validated via a robust
+      LLM-assisted pipeline with a <strong>95% human consensus agreement rate</strong>. Our dataset requires
+      explicit anatomical localization, laterality awareness, structural comparison, and 3D inter-structure
+      relational reasoning. We benchmark eight 3D medical VLMs, finding severe degradation on
+      semantic-spatial reasoning, averaging <strong>34% accuracy</strong> and often below random — highlighting
+      the need for deeper integration of volumetric evidence for trustworthy clinical use.
+    </div>
+
+    <div style="margin-top:1.8rem;">
+      <div class="section-title">Contributions</div>
+      <ul class="contrib-list">
+        <li>
+          <div class="contrib-num">1</div>
+          <div class="contrib-text">
+            <strong>CT-SpatialVQA Benchmark.</strong> We introduce CT-SpatialVQA, a benchmark for
+            systematically evaluating semantic-spatial reasoning in 3D medical VLMs using volumetric CT data
+            and clinically grounded QA pairs.
+          </div>
+        </li>
+        <li>
+          <div class="contrib-num">2</div>
+          <div class="contrib-text">
+            <strong>Spatially-Grounded QA Design.</strong> We generate clinically grounded QA pairs from
+            radiology reports through an LLM-based pipeline comprising generation, validation, and human
+            auditing — covering anatomical localization, laterality, structural comparison, and 3D
+            inter-structure reasoning.
+          </div>
+        </li>
+        <li>
+          <div class="contrib-num">3</div>
+          <div class="contrib-text">
+            <strong>Comprehensive Evaluation.</strong> We evaluate eight 3D medical VLMs on CT-SpatialVQA,
+            quantifying semantic–spatial reasoning capabilities and identifying failure modes that reveal
+            over-reliance on prior knowledge instead of volumetric visual grounding.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ METHOD ══════════════ -->
+<section class="content-section" id="method">
+  <div class="container" style="max-width:900px;">
+    <div class="section-title">Method &amp; Dataset</div>
+
+    <div class="figure-container">
+      <img src="figures/ct_spatial_vqa_pipeline.png" alt="CT-SpatialVQA Pipeline Overview" />
+      <p class="figure-caption">
+        <strong>Overview of CT-SpatialVQA.</strong>
+        (<em>top</em>) The dataset generation pipeline uses 3D CT scans and paired radiology reports to prompt
+        a &ldquo;QA Generator LLM&rdquo;, synthesizing candidate spatially-grounded QA pairs. An independent
+        QA Validator LLM filters the candidates, followed by medical human auditors to produce the final benchmark.
+        (<em>bottom</em>) The evaluation protocol tests each 3D medical VLM by inputting a 3D CT scan and a
+        spatially-grounded question, with LLM-based evaluation and traditional text metrics assessing the output.
+      </p>
+    </div>
+
+    <div class="figure-container" style="margin-top:2.5rem;">
+      <img src="figures/ct_rep_qa.png" alt="Example CT scan, radiology report, and QA pairs" />
+      <p class="figure-caption">
+        <strong>Illustrative Example.</strong> A 3D CT scan, its corresponding full radiology report, and
+        representative spatially-grounded QA pairs drawn from the CT-SpatialVQA benchmark.
+      </p>
+    </div>
+
+    <div class="figure-container" style="margin-top:2.5rem;">
+      <img src="figures/ct_qa_pred.png" alt="Model prediction examples showing spatial reasoning failures" />
+      <p class="figure-caption">
+        <strong>Spatial Reasoning Failures.</strong> Current 3D medical VLMs struggle to answer spatially
+        grounded questions, highlighting limitations in spatial reasoning and raising concerns about their
+        reliability for clinically meaningful use.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ RESULTS ══════════════ -->
+<section class="content-section" id="results">
+  <div class="container" style="max-width:960px;">
+    <div class="section-title">Results</div>
+
+    <p style="margin-bottom:1.2rem; color:#444; line-height:1.7;">
+      We benchmark eight state-of-the-art 3D medical VLMs in a zero-shot setting.
+      LLM-as-Jury uses GPT-4o, Gemini 2.5 Flash, and Qwen3 as independent binary judges.
+      All models fall below 50% accuracy, with the best model (CT-Chat) achieving only <strong>43.69%</strong>.
+    </p>
+
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th class="metric-col">Metric</th>
+            <th>CT-Chat</th>
+            <th>MERLIN</th>
+            <th>Med3DVLM</th>
+            <th>M3D</th>
+            <th>RadFM</th>
+            <th>VILA-M3</th>
+            <th>MedGemma</th>
+            <th>MedEvalKit</th>
+            <th>Avg.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="section-sep">
+            <td colspan="10">LLM-based Evaluation (Accuracy %)</td>
+          </tr>
+          <tr>
+            <td class="metric-col">LLM as Judge (Gemini)</td>
+            <td class="best">44.68</td><td>29.85</td><td>34.55</td><td>33.04</td>
+            <td>33.36</td><td>29.49</td><td>39.30</td><td>39.96</td><td>35.53</td>
+          </tr>
+          <tr>
+            <td class="metric-col">LLM as Judge (GPT)</td>
+            <td class="best">41.50</td><td>29.45</td><td>31.82</td><td>31.09</td>
+            <td>31.40</td><td>28.43</td><td>40.55</td><td>39.44</td><td>34.21</td>
+          </tr>
+          <tr>
+            <td class="metric-col">LLM as Judge (Qwen)</td>
+            <td class="best">45.27</td><td>30.34</td><td>32.20</td><td>31.21</td>
+            <td>32.09</td><td>27.81</td><td>37.33</td><td>41.89</td><td>34.79</td>
+          </tr>
+          <tr>
+            <td class="metric-col"><strong>LLM as Jury</strong></td>
+            <td class="best"><strong>43.69</strong></td><td>28.85</td><td>31.44</td><td>30.57</td>
+            <td>31.49</td><td>28.20</td><td>38.24</td><td>40.16</td><td><strong>34.08</strong></td>
+          </tr>
+          <tr class="section-sep">
+            <td colspan="10">Text Similarity Metrics</td>
+          </tr>
+          <tr>
+            <td class="metric-col">SBERT Cosine Sim.</td>
+            <td>0.562</td><td>0.503</td><td>0.399</td><td>0.412</td>
+            <td class="best">0.585</td><td>0.471</td><td>0.581</td><td>0.579</td><td>0.512</td>
+          </tr>
+          <tr>
+            <td class="metric-col">BLEU</td>
+            <td>3.29</td><td>8.11</td><td>0.56</td><td>1.08</td>
+            <td class="best">16.45</td><td>2.51</td><td>3.07</td><td>3.46</td><td>4.82</td>
+          </tr>
+          <tr>
+            <td class="metric-col">ROUGE-L</td>
+            <td>0.130</td><td>0.300</td><td>0.198</td><td>0.204</td>
+            <td class="best">0.372</td><td>0.273</td><td>0.167</td><td>0.158</td><td>0.225</td>
+          </tr>
+          <tr>
+            <td class="metric-col">METEOR</td>
+            <td>0.230</td><td>0.256</td><td>0.068</td><td>0.077</td>
+            <td class="best">0.311</td><td>0.114</td><td>0.237</td><td>0.252</td><td>0.193</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="figure-container" style="margin-top:2.5rem;">
+      <img src="figures/category_radar_plot.pdf" alt="Radar plot of category-level performance"
+           onerror="this.src='figures/ct_spatial_vqa_setup.png'" />
+      <p class="figure-caption">
+        <strong>Category-Level Analysis.</strong> Radar plot showing model performance across six spatial
+        reasoning categories in CT-SpatialVQA (LLM-as-Jury). Performance drops most sharply for vertical and
+        depth-oriented reasoning, suggesting models struggle most with relations that require consistent
+        volumetric representations.
+      </p>
+    </div>
+
+    <div class="figure-container" style="margin-top:2rem;">
+      <img src="figures/qa_pred_dist.png" alt="Distribution of word counts in questions and answers" />
+      <p class="figure-caption">
+        <strong>Answer Length Distribution.</strong> Distribution of word counts in questions, ground-truth
+        answers, and model predictions. Most models produce concise responses; CT-Chat, MedEvalKit, and
+        MedGemma generate comparatively longer answers.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CITATION ══════════════ -->
+<section class="content-section" id="citation">
+  <div class="container" style="max-width:820px;">
+    <div class="section-title">Citation</div>
+    <p style="margin-bottom:0.8rem; color:#444;">If you find CT-SpatialVQA useful in your research, please cite:</p>
+    <button class="copy-btn" onclick="copyBibtex()">
+      <i class="fas fa-copy"></i> Copy BibTeX
+    </button>
+    <div class="bibtex-box" id="bibtex">@inproceedings{monon2026ctspatialvqa,
+  title     = {Lost in Volume: The CT-SpatialVQA Benchmark for Evaluating
+               Semantic-Spatial Understanding of 3D Medical Vision--Language Models},
+  author    = {Monon, Mashrafi and Rahman, Umaima and Hanif, Asif and
+               Saeed, Numan and Yaqub, Mohammad},
+  booktitle = {Medical Image Computing and Computer Assisted Intervention (MICCAI)},
+  year      = {2026}
+}</div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <p>
+    CT-SpatialVQA &nbsp;·&nbsp; MICCAI 2026 &nbsp;·&nbsp;
+    <a href="https://github.com/Mashrafi27/CT-SpatialVQA" target="_blank">GitHub</a>
+  </p>
+  <p style="margin-top:0.3rem; font-size:0.78rem; color:#777;">
+    Website template inspired by <a href="https://nerfies.github.io" target="_blank">Nerfies</a>.
+  </p>
+</footer>
+
+<script>
+  function copyBibtex() {
+    const text = document.getElementById('bibtex').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.copy-btn');
+      btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+      setTimeout(() => { btn.innerHTML = '<i class="fas fa-copy"></i> Copy BibTeX'; }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
