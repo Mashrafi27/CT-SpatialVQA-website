@@ -124,6 +124,7 @@
   <div class="container">
     <div class="navbar-menu is-active" style="justify-content:center;flex-wrap:wrap;gap:0.2rem;padding:0.4rem 0;">
       <a class="navbar-item" href="#abstract">Abstract</a>
+      <a class="navbar-item" href="#motivation">Motivation</a>
       <a class="navbar-item" href="#method">Method</a>
       <a class="navbar-item" href="#dataset">Dataset</a>
       <a class="navbar-item" href="#results">Results</a>
@@ -211,13 +212,50 @@
   </div>
 </section>
 
+<!-- ══════════════ MOTIVATION ══════════════ -->
+<section class="content-section" id="motivation" style="background:#0d0d0d; padding:3rem 1.5rem;">
+  <div class="container" style="max-width:960px;">
+    <div class="section-title" style="color:#fff; border-bottom-color:#f5a623;">Can 3D Medical VLMs answer this?</div>
+
+    <!-- Q slide -->
+    <div class="figure-container" style="margin-bottom:0.5rem;">
+      <img src="figures/slide-03.png" alt="Spatial question on CT scan" style="max-width:100%; border-radius:10px;" />
+    </div>
+
+    <!-- A slide -->
+    <div class="figure-container" style="margin-top:0.5rem; margin-bottom:0.5rem;">
+      <img src="figures/slide-05.png" alt="Correct answer highlighted on CT scan" style="max-width:100%; border-radius:10px;" />
+    </div>
+
+    <p style="text-align:center; color:#aaa; font-size:0.88rem; margin:0.5rem 0 2rem;">
+      A clinician localizes the lesion precisely. What do SOTA 3D medical VLMs say?
+    </p>
+
+    <!-- 3 wrong model answers side by side -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0.8rem;">
+      <div class="figure-container" style="margin:0;">
+        <img src="figures/slide-07.png" alt="SOTA model 1 wrong answer" style="width:100%; border-radius:8px;" />
+      </div>
+      <div class="figure-container" style="margin:0;">
+        <img src="figures/slide-08.png" alt="SOTA model 2 wrong answer" style="width:100%; border-radius:8px;" />
+      </div>
+      <div class="figure-container" style="margin:0;">
+        <img src="figures/slide-09.png" alt="SOTA model 3 wrong answer" style="width:100%; border-radius:8px;" />
+      </div>
+    </div>
+    <p style="text-align:center; color:#aaa; font-size:0.85rem; margin-top:0.8rem;">
+      All three state-of-the-art 3D medical VLMs answer incorrectly.
+    </p>
+  </div>
+</section>
+
 <!-- ══════════════ METHOD ══════════════ -->
 <section class="content-section" id="method">
   <div class="container" style="max-width:960px;">
     <div class="section-title">Method</div>
 
     <div class="figure-container">
-      <img src="figures/ct_spatial_vqa_setup.png" alt="CT-SpatialVQA Pipeline Overview" style="max-width:88%;" />
+      <img src="figures/slide-20.png" alt="CT-SpatialVQA Pipeline Overview" style="max-width:92%; border-radius:12px;" />
       <p class="figure-caption">
         <strong>CT-SpatialVQA pipeline.</strong>
         (top) QA generation: CT scans + radiology reports → Generator LLM → Validator LLM → human auditors → benchmark.
