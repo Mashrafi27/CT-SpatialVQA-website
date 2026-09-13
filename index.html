@@ -86,6 +86,15 @@
     .qa-card .q::before { content:"Q  "; color:var(--accent); }
     .qa-card .a::before { content:"A  "; color:#2d6a2d; }
 
+    /* ── Category QA cards ── */
+    .cat-icon-fa { font-size:1.6rem; color:var(--accent); margin-bottom:0.4rem; }
+    .cat-qa { margin-top:0.75rem; border-top:1px solid #eef0f6; padding-top:0.65rem; text-align:left; }
+    .cat-ct-img { width:100%; border-radius:6px; margin-bottom:0.5rem; object-fit:cover; max-height:120px; }
+    .cat-q { font-size:0.78rem; font-weight:600; color:#1a1a2e; margin-bottom:0.25rem; }
+    .cat-q::before { content:"Q  "; color:var(--accent); }
+    .cat-a { font-size:0.78rem; font-weight:600; color:#2d6a2d; }
+    .cat-a::before { content:"A  "; color:#2d6a2d; }
+
     /* ── GIFs ── */
     .gif-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.2rem 0; }
     @media(max-width:600px){ .gif-grid { grid-template-columns:1fr; } }
@@ -219,15 +228,6 @@
     <div class="section-title">Method</div>
 
     <div class="figure-container">
-      <img src="figures/ct_spatial_vqa_setup.png" alt="CT-SpatialVQA Pipeline Overview" style="max-width:92%; border-radius:12px;" />
-      <p class="figure-caption">
-        <strong>CT-SpatialVQA pipeline.</strong>
-        (top) QA generation: CT scans + radiology reports → Generator LLM → Validator LLM → human auditors → benchmark.
-        (bottom) Evaluation: 3D CT + question → VLM → LLM-as-Jury + text metrics.
-      </p>
-    </div>
-
-    <div class="figure-container" style="margin-top:2.5rem;">
       <img src="figures/ct_rep_qa.png" alt="Example CT scan with radiology report and QA pairs" />
       <p class="figure-caption">
         <strong>Example.</strong> A CT scan, its paired radiology report, and representative spatially-grounded QA pairs.
@@ -255,77 +255,89 @@
     </div>
 
     <!-- CT volume GIFs -->
+    <p style="font-size:0.92rem;color:#555;margin-bottom:0.8rem;">A single CT volume shown across all three anatomical planes:</p>
     <div class="gif-grid">
       <div class="gif-card">
-        <img src="https://raw.githubusercontent.com/BioMedIA-MBZUAI/CT-SpatialVQA/main/valid_1005_axial.gif" alt="Axial view" onerror="this.style.display='none'" />
+        <img src="figures/valid_1005_axial.gif" alt="Axial view" />
         <span>Axial</span>
       </div>
       <div class="gif-card">
-        <img src="https://raw.githubusercontent.com/BioMedIA-MBZUAI/CT-SpatialVQA/main/valid_1005_coronal.gif" alt="Coronal view" onerror="this.style.display='none'" />
+        <img src="figures/valid_1005_coronal.gif" alt="Coronal view" />
         <span>Coronal</span>
       </div>
       <div class="gif-card">
-        <img src="https://raw.githubusercontent.com/BioMedIA-MBZUAI/CT-SpatialVQA/main/valid_1005_sagittal.gif" alt="Sagittal view" onerror="this.style.display='none'" />
+        <img src="figures/valid_1005_sagittal.gif" alt="Sagittal view" />
         <span>Sagittal</span>
       </div>
     </div>
 
-    <!-- Spatial Categories -->
-    <h3 style="font-size:1.1rem;font-weight:700;color:#1a1a2e;margin:2rem 0 1rem;">Six Spatial Reasoning Categories</h3>
+    <!-- Spatial Categories with embedded QA samples -->
+    <h3 style="font-size:1.1rem;font-weight:700;color:#1a1a2e;margin:2.5rem 0 1rem;">Six Spatial Reasoning Categories</h3>
     <div class="cat-grid">
+
       <div class="cat-card">
-        <div class="cat-icon">↔️</div>
+        <div class="cat-icon-fa"><i class="fas fa-arrows-left-right"></i></div>
         <span class="cat-num-badge">01</span>
         <div class="cat-name">Laterality &amp; Bilateral Symmetry</div>
+        <div class="cat-qa">
+          <img src="figures/cor_150.png" alt="Coronal CT" class="cat-ct-img" />
+          <div class="cat-q">Is the consolidation area in the right or left lung?</div>
+          <div class="cat-a">In the right lung.</div>
+        </div>
       </div>
+
       <div class="cat-card">
-        <div class="cat-icon">↕️</div>
+        <div class="cat-icon-fa"><i class="fas fa-arrows-up-down"></i></div>
         <span class="cat-num-badge">02</span>
         <div class="cat-name">Longitudinal (Vertical) Position</div>
+        <div class="cat-qa">
+          <div class="cat-q">Is the pleural effusion located in the upper or lower thorax?</div>
+          <div class="cat-a">In the lower thorax, predominantly basal.</div>
+        </div>
       </div>
+
       <div class="cat-card">
-        <div class="cat-icon">⬛</div>
+        <div class="cat-icon-fa"><i class="fas fa-layer-group"></i></div>
         <span class="cat-num-badge">03</span>
         <div class="cat-name">Anterior-Posterior (Depth) Relations</div>
+        <div class="cat-qa">
+          <img src="figures/slice_155.png" alt="Axial CT" class="cat-ct-img" />
+          <div class="cat-q">Where is the cystic lesion relative to the ascending aorta?</div>
+          <div class="cat-a">In the anterior neighborhood of the ascending aorta.</div>
+        </div>
       </div>
+
       <div class="cat-card">
-        <div class="cat-icon">🎯</div>
+        <div class="cat-icon-fa"><i class="fas fa-bullseye"></i></div>
         <span class="cat-num-badge">04</span>
         <div class="cat-name">Medial-Lateral Orientation (Centricity)</div>
+        <div class="cat-qa">
+          <div class="cat-q">Is the hilar mass centrally or peripherally located?</div>
+          <div class="cat-a">Centrally located at the hilum.</div>
+        </div>
       </div>
+
       <div class="cat-card">
-        <div class="cat-icon">🔗</div>
+        <div class="cat-icon-fa"><i class="fas fa-object-group"></i></div>
         <span class="cat-num-badge">05</span>
         <div class="cat-name">Adjacency &amp; Containment</div>
+        <div class="cat-qa">
+          <img src="figures/valid_1006_lesion.png" alt="CT lesion" class="cat-ct-img" />
+          <div class="cat-q">Where are the space-occupying lesions relative to the ribs?</div>
+          <div class="cat-a">Anteriorly at the sternal junctions of the 2nd and 3rd ribs.</div>
+        </div>
       </div>
+
       <div class="cat-card">
-        <div class="cat-icon">📐</div>
+        <div class="cat-icon-fa"><i class="fas fa-expand"></i></div>
         <span class="cat-num-badge">06</span>
         <div class="cat-name">Spatial Extent &amp; Boundaries</div>
+        <div class="cat-qa">
+          <div class="cat-q">Does the ground-glass opacity cross the lobar fissure?</div>
+          <div class="cat-a">Yes, it extends across the fissure into the adjacent lobe.</div>
+        </div>
       </div>
-    </div>
 
-    <!-- Sample QA pairs -->
-    <h3 style="font-size:1.1rem;font-weight:700;color:#1a1a2e;margin:2rem 0 1rem;">Sample QA Pairs</h3>
-    <div class="qa-grid">
-      <div class="qa-card">
-        <img src="figures/slice_155.png" alt="Axial CT slice" style="width:100%;border-radius:6px;margin-bottom:0.6rem;object-fit:cover;max-height:160px;" />
-        <span class="cat-tag">Anterior-Posterior</span>
-        <div class="q">Where is the loculated cystic lesion located relative to the ascending aorta?</div>
-        <div class="a">In the anterior neighborhood of the ascending aorta.</div>
-      </div>
-      <div class="qa-card">
-        <img src="figures/cor_150.png" alt="Coronal CT slice" style="width:100%;border-radius:6px;margin-bottom:0.6rem;object-fit:cover;max-height:160px;" />
-        <span class="cat-tag">Laterality</span>
-        <div class="q">Is the consolidation area found in the right or left lung?</div>
-        <div class="a">In the right lung.</div>
-      </div>
-      <div class="qa-card">
-        <img src="figures/valid_1006_lesion.png" alt="CT lesion view" style="width:100%;border-radius:6px;margin-bottom:0.6rem;object-fit:cover;max-height:160px;" />
-        <span class="cat-tag">Adjacency &amp; Containment</span>
-        <div class="q">Where are space-occupying lesions located in relation to the ribs?</div>
-        <div class="a">Anteriorly at the sternal junctions of the 2nd and 3rd ribs.</div>
-      </div>
     </div>
   </div>
 </section>
