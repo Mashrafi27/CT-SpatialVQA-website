@@ -93,6 +93,8 @@
     .link-btn.secondary:hover { background: var(--accent-light); }
     .link-btn.dark      { background: #24292e; color: #fff; }
     .link-btn.dark:hover { background: #111; color: #fff; }
+    .link-btn.hf        { background: #ff9d00; color: #fff; }
+    .link-btn.hf:hover  { background: #e08900; color: #fff; }
 
     /* ── Sections ── */
     .content-section { padding: 3.5rem 1.5rem; }
@@ -164,6 +166,101 @@
       line-height: 1.55;
     }
     .figure-caption strong { color: #222; }
+
+    /* ── Dataset section ── */
+    .dataset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+    }
+    .dataset-card {
+      background: #fff;
+      border: 1px solid #dde4f0;
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
+    .dataset-card .cat-num {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.1rem 0.5rem;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+    }
+    .dataset-card h4 {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 0.3rem;
+    }
+    .dataset-card p {
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .code-block {
+      background: #1e1e2e;
+      color: #cdd6f4;
+      border-radius: 8px;
+      padding: 1rem 1.4rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    .qa-example {
+      background: #fff;
+      border: 1px solid #dde4f0;
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      margin: 0.6rem 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,.04);
+    }
+    .qa-example .q { color: var(--accent-dark); font-weight: 600; font-size: 0.92rem; }
+    .qa-example .a { color: #2d6a2d; font-weight: 600; font-size: 0.92rem; margin-top: 0.3rem; }
+    .qa-example .cat-tag {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent-dark);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.1rem 0.5rem;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── GIF viewer ── */
+    .gif-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .gif-card {
+      text-align: center;
+    }
+    .gif-card img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.12);
+    }
+    .gif-card span {
+      display: block;
+      font-size: 0.82rem;
+      color: #666;
+      margin-top: 0.4rem;
+      font-weight: 500;
+    }
+    @media (max-width: 640px) {
+      .gif-grid { grid-template-columns: 1fr; }
+    }
 
     /* ── Results table ── */
     .results-table-wrap { overflow-x: auto; margin: 1.5rem 0; }
@@ -271,9 +368,10 @@
     <div class="navbar-menu is-active" style="justify-content:center; flex-wrap:wrap; gap:0.2rem; padding:0.4rem 0;">
       <a class="navbar-item" href="#abstract">Abstract</a>
       <a class="navbar-item" href="#method">Method</a>
+      <a class="navbar-item" href="#dataset">Dataset</a>
       <a class="navbar-item" href="#results">Results</a>
       <a class="navbar-item" href="#citation">Citation</a>
-      <a class="navbar-item" href="https://github.com/Mashrafi27/CT-SpatialVQA" target="_blank">
+      <a class="navbar-item" href="https://github.com/BioMedIA-MBZUAI/CT-SpatialVQA" target="_blank">
         <i class="fab fa-github" style="margin-right:4px"></i>Code
       </a>
     </div>
@@ -302,11 +400,14 @@
     </p>
 
     <div class="link-buttons">
-      <a class="link-btn primary" href="#" target="_blank">
+      <a class="link-btn primary" href="https://arxiv.org/abs/2605.08787" target="_blank">
         <i class="fas fa-file-pdf"></i> Paper
       </a>
-      <a class="link-btn dark" href="https://github.com/Mashrafi27/CT-SpatialVQA" target="_blank">
-        <i class="fab fa-github"></i> Code &amp; Dataset
+      <a class="link-btn hf" href="https://huggingface.co/datasets/Mashrafi2827/CT-SpatialVQA" target="_blank">
+        🤗 Dataset
+      </a>
+      <a class="link-btn dark" href="https://github.com/BioMedIA-MBZUAI/CT-SpatialVQA" target="_blank">
+        <i class="fab fa-github"></i> Code
       </a>
     </div>
 
@@ -321,6 +422,10 @@
         <div class="stat-label">CT Volumes</div>
       </div>
       <div class="stat-card">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Spatial Categories</div>
+      </div>
+      <div class="stat-card">
         <div class="stat-number">8</div>
         <div class="stat-label">VLMs Benchmarked</div>
       </div>
@@ -329,8 +434,8 @@
         <div class="stat-label">Human Consensus</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">34%</div>
-        <div class="stat-label">Best Avg. Accuracy</div>
+        <div class="stat-number">&lt;44%</div>
+        <div class="stat-label">Best Accuracy</div>
       </div>
     </div>
   </div>
@@ -422,6 +527,108 @@
         reliability for clinically meaningful use.
       </p>
     </div>
+  </div>
+</section>
+
+<!-- ══════════════ DATASET ══════════════ -->
+<section class="content-section" id="dataset">
+  <div class="container" style="max-width:960px;">
+    <div class="section-title">Dataset</div>
+
+    <p style="color:#444; line-height:1.75; margin-bottom:1.5rem;">
+      CT-SpatialVQA is built on the <strong>CT-RATE</strong> dataset (test split) — 1,601 volumetric CT scans
+      paired with board-certified radiology reports. Using GPT-4o as the Generator LLM and Gemini 2.5 Flash as
+      the Validator LLM, we constructed <strong>9,077 spatially grounded QA pairs</strong> averaging
+      5.67 pairs per report. The dataset is publicly available on HuggingFace.
+    </p>
+
+    <div style="text-align:center; margin-bottom:2rem;">
+      <a class="link-btn hf" href="https://huggingface.co/datasets/Mashrafi2827/CT-SpatialVQA" target="_blank" style="font-size:1rem; padding:0.6rem 1.5rem;">
+        🤗 Access Dataset on HuggingFace
+      </a>
+    </div>
+
+    <!-- Spatial Categories -->
+    <h3 style="font-size:1.15rem; font-weight:700; color:#1a1a2e; margin-bottom:1rem;">Six Spatial Reasoning Categories</h3>
+    <div class="dataset-grid">
+      <div class="dataset-card">
+        <span class="cat-num">01</span>
+        <h4>Laterality &amp; Bilateral Symmetry</h4>
+        <p>Left/right/bilateral grounding relative to the sagittal midline. Prevents laterality inversion and aids hallucination detection.</p>
+      </div>
+      <div class="dataset-card">
+        <span class="cat-num">02</span>
+        <h4>Longitudinal (Vertical) Position</h4>
+        <p>Superior/inferior axis positioning. Requires volumetric integration along the cranio-caudal axis and slice-level consistency.</p>
+      </div>
+      <div class="dataset-card">
+        <span class="cat-num">03</span>
+        <h4>Anterior-Posterior (Depth) Relations</h4>
+        <p>Front/back orientation across the axial stack. Preserves depth cues essential for compartment-level reasoning.</p>
+      </div>
+      <div class="dataset-card">
+        <span class="cat-num">04</span>
+        <h4>Medial-Lateral Orientation (Centricity)</h4>
+        <p>Central vs. peripheral localization within anatomical reference frames across the full volume.</p>
+      </div>
+      <div class="dataset-card">
+        <span class="cat-num">05</span>
+        <h4>Adjacency &amp; Containment</h4>
+        <p>Topological relations: distinguishing structures that are touching from those contained within anatomical boundaries.</p>
+      </div>
+      <div class="dataset-card">
+        <span class="cat-num">06</span>
+        <h4>Spatial Extent &amp; Boundaries</h4>
+        <p>Tracks spatial continuity, confinement, and compartment crossing to model disease spread accurately.</p>
+      </div>
+    </div>
+
+    <!-- Sample QA pairs -->
+    <h3 style="font-size:1.15rem; font-weight:700; color:#1a1a2e; margin:1.8rem 0 1rem;">Sample QA Pairs</h3>
+    <div class="qa-example">
+      <span class="cat-tag">Anterior-Posterior Relations</span>
+      <div class="q">Q: Where is the loculated cystic lesion located relative to the ascending aorta?</div>
+      <div class="a">A: In the anterior neighborhood of the ascending aorta.</div>
+    </div>
+    <div class="qa-example">
+      <span class="cat-tag">Laterality &amp; Bilateral Symmetry</span>
+      <div class="q">Q: Is the consolidation area found in the right or left lung?</div>
+      <div class="a">A: In the right lung.</div>
+    </div>
+    <div class="qa-example">
+      <span class="cat-tag">Adjacency &amp; Containment</span>
+      <div class="q">Q: Where are space-occupying lesions located in relation to the ribs?</div>
+      <div class="a">A: Anteriorly at the sternal junctions of the 2nd and 3rd ribs.</div>
+    </div>
+
+    <!-- CT Volume Visualization -->
+    <h3 style="font-size:1.15rem; font-weight:700; color:#1a1a2e; margin:1.8rem 0 1rem;">CT Volume Visualization</h3>
+    <p style="color:#555; font-size:0.9rem; margin-bottom:1rem;">
+      Each benchmark case is a full 3D CT volume. Below are axial, coronal, and sagittal views of an example case.
+    </p>
+    <div class="gif-grid">
+      <div class="gif-card">
+        <img src="https://raw.githubusercontent.com/BioMedIA-MBZUAI/CT-SpatialVQA/main/valid_1005_axial.gif" alt="Axial view" onerror="this.style.display='none'" />
+        <span>Axial</span>
+      </div>
+      <div class="gif-card">
+        <img src="https://raw.githubusercontent.com/BioMedIA-MBZUAI/CT-SpatialVQA/main/valid_1005_coronal.gif" alt="Coronal view" onerror="this.style.display='none'" />
+        <span>Coronal</span>
+      </div>
+      <div class="gif-card">
+        <img src="https://raw.githubusercontent.com/BioMedIA-MBZUAI/CT-SpatialVQA/main/valid_1005_sagittal.gif" alt="Sagittal view" onerror="this.style.display='none'" />
+        <span>Sagittal</span>
+      </div>
+    </div>
+
+    <!-- Schema -->
+    <h3 style="font-size:1.15rem; font-weight:700; color:#1a1a2e; margin:1.8rem 0 0.8rem;">JSONL Schema</h3>
+    <div class="code-block">{"case_id": "valid_1005", "image_path": "valid_1005/", "question": "Where is the loculated cystic lesion located relative to the ascending aorta?", "answer": "In the anterior neighborhood of the ascending aorta."}</div>
+
+    <p style="color:#555; font-size:0.88rem; margin-top:0.5rem;">
+      CT volumes are not distributed directly. Use the CT-RATE download script included in the repository:
+      <code style="background:#f0f4ff; padding:0.1rem 0.4rem; border-radius:4px;">python dataset/download_ctrate_dataset.py</code>
+    </p>
   </div>
 </section>
 
@@ -548,7 +755,9 @@
 <footer>
   <p>
     CT-SpatialVQA &nbsp;·&nbsp; MICCAI 2026 &nbsp;·&nbsp;
-    <a href="https://github.com/Mashrafi27/CT-SpatialVQA" target="_blank">GitHub</a>
+    <a href="https://arxiv.org/abs/2605.08787" target="_blank">arXiv</a> &nbsp;·&nbsp;
+    <a href="https://huggingface.co/datasets/Mashrafi2827/CT-SpatialVQA" target="_blank">HuggingFace</a> &nbsp;·&nbsp;
+    <a href="https://github.com/BioMedIA-MBZUAI/CT-SpatialVQA" target="_blank">GitHub</a>
   </p>
   <p style="margin-top:0.3rem; font-size:0.78rem; color:#777;">
     Website template inspired by <a href="https://nerfies.github.io" target="_blank">Nerfies</a>.
