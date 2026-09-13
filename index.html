@@ -12,351 +12,108 @@
       --accent-light: #dce5f5;
       --accent-dark: #2a4f8f;
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      color: #222;
-    }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: #222; }
 
     /* ── Nav ── */
-    .navbar {
-      background: #fff;
-      border-bottom: 1px solid #e8e8e8;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 1px 6px rgba(0,0,0,.07);
-    }
-    .navbar-item { font-weight: 500; color: #444; }
-    .navbar-item:hover { color: var(--accent); background: transparent; }
+    .navbar { background:#fff; border-bottom:1px solid #e8e8e8; position:sticky; top:0; z-index:100; box-shadow:0 1px 6px rgba(0,0,0,.07); }
+    .navbar-item { font-weight:500; color:#444; }
+    .navbar-item:hover { color:var(--accent); background:transparent; }
 
     /* ── Hero ── */
-    .hero-section {
-      background: linear-gradient(135deg, #f5f8ff 0%, #eef2fb 100%);
-      padding: 4rem 1.5rem 3rem;
-      text-align: center;
-    }
-    .paper-title {
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 1.3;
-      color: #1a1a2e;
-      max-width: 820px;
-      margin: 0 auto 0.5rem;
-    }
-    .paper-title span {
-      color: var(--accent);
-    }
-    .venue-tag {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 0.2rem 0.75rem;
-      border-radius: 20px;
-      margin-bottom: 1.4rem;
-      letter-spacing: 0.03em;
-    }
-    .authors {
-      font-size: 1.05rem;
-      color: #333;
-      margin-bottom: 0.4rem;
-    }
-    .authors a { color: var(--accent); text-decoration: none; }
-    .authors a:hover { text-decoration: underline; }
-    .affiliations {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 1.8rem;
-    }
-    .aff-sup { font-size: 0.72em; vertical-align: super; }
+    .hero-section { background:linear-gradient(135deg,#f5f8ff 0%,#eef2fb 100%); padding:4rem 1.5rem 3rem; text-align:center; }
+    .paper-title { font-size:2rem; font-weight:700; line-height:1.3; color:#1a1a2e; max-width:820px; margin:0 auto 0.5rem; }
+    .paper-title span { color:var(--accent); }
+    .venue-tag { display:inline-block; background:var(--accent); color:#fff; font-size:0.85rem; font-weight:600; padding:0.2rem 0.75rem; border-radius:20px; margin-bottom:1.4rem; letter-spacing:0.03em; }
+    .authors { font-size:1.05rem; color:#333; margin-bottom:0.4rem; }
+    .authors a { color:var(--accent); text-decoration:none; }
+    .authors a:hover { text-decoration:underline; }
+    .affiliations { font-size:0.9rem; color:#666; margin-bottom:1.8rem; }
+    .aff-sup { font-size:0.72em; vertical-align:super; }
 
     /* ── Buttons ── */
-    .link-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; margin-bottom: 0.5rem; }
-    .link-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.5rem 1.2rem;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all .18s;
-    }
-    .link-btn.primary   { background: var(--accent); color: #fff; }
-    .link-btn.primary:hover { background: var(--accent-dark); color: #fff; }
-    .link-btn.secondary { background: #fff; color: var(--accent); border: 2px solid var(--accent); }
-    .link-btn.secondary:hover { background: var(--accent-light); }
-    .link-btn.dark      { background: #24292e; color: #fff; }
-    .link-btn.dark:hover { background: #111; color: #fff; }
-    .link-btn.hf        { background: #ff9d00; color: #fff; }
-    .link-btn.hf:hover  { background: #e08900; color: #fff; }
+    .link-buttons { display:flex; flex-wrap:wrap; justify-content:center; gap:0.7rem; margin-bottom:0.5rem; }
+    .link-btn { display:inline-flex; align-items:center; gap:0.45rem; padding:0.5rem 1.2rem; border-radius:8px; font-size:0.95rem; font-weight:600; text-decoration:none; transition:all .18s; }
+    .link-btn.primary   { background:var(--accent); color:#fff; }
+    .link-btn.primary:hover { background:var(--accent-dark); color:#fff; }
+    .link-btn.dark      { background:#24292e; color:#fff; }
+    .link-btn.dark:hover { background:#111; color:#fff; }
+    .link-btn.hf        { background:#ff9d00; color:#fff; }
+    .link-btn.hf:hover  { background:#e08900; color:#fff; }
+
+    /* ── Stats ── */
+    .stats-bar { display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem; margin:2rem 0; }
+    .stat-card { background:#fff; border:1px solid #dde4f0; border-radius:10px; padding:1rem 1.6rem; text-align:center; min-width:130px; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+    .stat-number { font-size:1.9rem; font-weight:700; color:var(--accent); line-height:1; }
+    .stat-label { font-size:0.82rem; color:#666; margin-top:0.25rem; }
 
     /* ── Sections ── */
-    .content-section { padding: 3.5rem 1.5rem; }
-    .content-section:nth-child(even) { background: #f9fafc; }
-
-    .section-title {
-      font-size: 1.55rem;
-      font-weight: 700;
-      color: #1a1a2e;
-      margin-bottom: 1.2rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 3px solid var(--accent);
-      display: inline-block;
-    }
-
-    /* ── Abstract ── */
-    .abstract-box {
-      background: var(--accent-light);
-      border-left: 4px solid var(--accent);
-      border-radius: 0 8px 8px 0;
-      padding: 1.4rem 1.6rem;
-      font-size: 1rem;
-      line-height: 1.75;
-      color: #333;
-    }
-
-    /* ── Stats bar ── */
-    .stats-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    .stat-card {
-      background: #fff;
-      border: 1px solid #dde4f0;
-      border-radius: 10px;
-      padding: 1rem 1.6rem;
-      text-align: center;
-      min-width: 140px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.05);
-    }
-    .stat-number {
-      font-size: 1.9rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .stat-label { font-size: 0.82rem; color: #666; margin-top: 0.25rem; }
+    .content-section { padding:3.5rem 1.5rem; }
+    .content-section:nth-child(even) { background:#f9fafc; }
+    .section-title { font-size:1.55rem; font-weight:700; color:#1a1a2e; margin-bottom:1.4rem; padding-bottom:0.5rem; border-bottom:3px solid var(--accent); display:inline-block; }
 
     /* ── Figures ── */
-    .figure-container {
-      text-align: center;
-      margin: 1.5rem 0;
-    }
-    .figure-container img {
-      max-width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 3px 16px rgba(0,0,0,.1);
-    }
-    .figure-caption {
-      font-size: 0.88rem;
-      color: #555;
-      margin-top: 0.75rem;
-      max-width: 780px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.55;
-    }
-    .figure-caption strong { color: #222; }
+    .figure-container { text-align:center; margin:1.5rem 0; }
+    .figure-container img { max-width:100%; border-radius:8px; box-shadow:0 3px 16px rgba(0,0,0,.1); }
+    .figure-caption { font-size:0.85rem; color:#777; margin-top:0.6rem; max-width:760px; margin-left:auto; margin-right:auto; }
+    .figure-caption strong { color:#444; }
 
-    /* ── Dataset section ── */
-    .dataset-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.2rem;
-      margin: 1.5rem 0;
-    }
-    .dataset-card {
-      background: #fff;
-      border: 1px solid #dde4f0;
-      border-radius: 10px;
-      padding: 1.2rem 1.4rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,.04);
-    }
-    .dataset-card .cat-num {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.1rem 0.5rem;
-      border-radius: 12px;
-      margin-bottom: 0.5rem;
-    }
-    .dataset-card h4 {
-      font-size: 0.97rem;
-      font-weight: 700;
-      color: #1a1a2e;
-      margin-bottom: 0.3rem;
-    }
-    .dataset-card p {
-      font-size: 0.85rem;
-      color: #555;
-      line-height: 1.5;
-    }
+    /* ── Contributions (icon cards) ── */
+    .contrib-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.2rem; margin-top:0.5rem; }
+    .contrib-card { background:#fff; border:1px solid #dde4f0; border-radius:12px; padding:1.4rem 1.2rem; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,.04); }
+    .contrib-card .icon-wrap { width:3rem; height:3rem; background:var(--accent-light); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 0.8rem; }
+    .contrib-card .icon-wrap i { font-size:1.2rem; color:var(--accent); }
+    .contrib-card h4 { font-size:0.95rem; font-weight:700; color:#1a1a2e; margin-bottom:0.3rem; }
+    .contrib-card p { font-size:0.82rem; color:#666; line-height:1.5; }
 
-    .code-block {
-      background: #1e1e2e;
-      color: #cdd6f4;
-      border-radius: 8px;
-      padding: 1rem 1.4rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      overflow-x: auto;
-      margin: 1rem 0;
-    }
+    /* ── Category cards ── */
+    .cat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.2rem 0; }
+    @media(max-width:700px){ .cat-grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:480px){ .cat-grid { grid-template-columns:1fr; } }
+    .cat-card { background:#fff; border:1px solid #dde4f0; border-radius:10px; padding:1rem 1rem 0.9rem; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,.04); }
+    .cat-card .cat-icon { font-size:1.6rem; margin-bottom:0.4rem; }
+    .cat-card .cat-name { font-size:0.88rem; font-weight:700; color:#1a1a2e; line-height:1.3; }
+    .cat-num-badge { display:inline-block; background:var(--accent); color:#fff; font-size:0.68rem; font-weight:700; padding:0.05rem 0.4rem; border-radius:10px; margin-bottom:0.4rem; }
 
-    .qa-example {
-      background: #fff;
-      border: 1px solid #dde4f0;
-      border-radius: 10px;
-      padding: 1.2rem 1.4rem;
-      margin: 0.6rem 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,.04);
-    }
-    .qa-example .q { color: var(--accent-dark); font-weight: 600; font-size: 0.92rem; }
-    .qa-example .a { color: #2d6a2d; font-weight: 600; font-size: 0.92rem; margin-top: 0.3rem; }
-    .qa-example .cat-tag {
-      display: inline-block;
-      background: var(--accent-light);
-      color: var(--accent-dark);
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.1rem 0.5rem;
-      border-radius: 10px;
-      margin-bottom: 0.5rem;
-    }
+    /* ── QA examples ── */
+    .qa-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1rem; margin:1.2rem 0; }
+    .qa-card { background:#fff; border:1px solid #dde4f0; border-radius:10px; padding:1rem 1.1rem; box-shadow:0 2px 6px rgba(0,0,0,.04); }
+    .qa-card .cat-tag { display:inline-block; background:var(--accent-light); color:var(--accent-dark); font-size:0.7rem; font-weight:700; padding:0.1rem 0.5rem; border-radius:10px; margin-bottom:0.5rem; }
+    .qa-card .q { font-size:0.88rem; color:#1a1a2e; font-weight:600; margin-bottom:0.4rem; }
+    .qa-card .a { font-size:0.88rem; color:#2d6a2d; font-weight:600; }
+    .qa-card .q::before { content:"Q  "; color:var(--accent); }
+    .qa-card .a::before { content:"A  "; color:#2d6a2d; }
 
-    /* ── GIF viewer ── */
-    .gif-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-    .gif-card {
-      text-align: center;
-    }
-    .gif-card img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 3px 12px rgba(0,0,0,.12);
-    }
-    .gif-card span {
-      display: block;
-      font-size: 0.82rem;
-      color: #666;
-      margin-top: 0.4rem;
-      font-weight: 500;
-    }
-    @media (max-width: 640px) {
-      .gif-grid { grid-template-columns: 1fr; }
-    }
+    /* ── GIFs ── */
+    .gif-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.2rem 0; }
+    @media(max-width:600px){ .gif-grid { grid-template-columns:1fr; } }
+    .gif-card { text-align:center; }
+    .gif-card img { width:100%; border-radius:8px; box-shadow:0 3px 12px rgba(0,0,0,.12); }
+    .gif-card span { display:block; font-size:0.82rem; color:#666; margin-top:0.35rem; font-weight:600; letter-spacing:0.03em; text-transform:uppercase; }
 
     /* ── Results table ── */
-    .results-table-wrap { overflow-x: auto; margin: 1.5rem 0; }
-    .results-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88rem;
-    }
-    .results-table th {
-      background: var(--accent);
-      color: #fff;
-      padding: 0.6rem 0.7rem;
-      text-align: center;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .results-table th.metric-col { text-align: left; min-width: 160px; }
-    .results-table td {
-      padding: 0.5rem 0.7rem;
-      text-align: center;
-      border-bottom: 1px solid #e8eef7;
-    }
-    .results-table td.metric-col { text-align: left; font-weight: 500; color: #444; }
-    .results-table tr:nth-child(even) td { background: #f4f7fc; }
-    .results-table .section-sep td {
-      background: #dce5f5 !important;
-      font-weight: 600;
-      color: var(--accent-dark);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      padding: 0.3rem 0.7rem;
-    }
-    .best { font-weight: 700; color: var(--accent-dark); }
-
-    /* ── Contributions ── */
-    .contrib-list { list-style: none; padding: 0; }
-    .contrib-list li {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      align-items: flex-start;
-    }
-    .contrib-num {
-      flex-shrink: 0;
-      width: 2rem;
-      height: 2rem;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-    .contrib-text { font-size: 0.97rem; line-height: 1.6; color: #333; }
+    .results-table-wrap { overflow-x:auto; margin:1rem 0; }
+    .results-table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+    .results-table th { background:var(--accent); color:#fff; padding:0.6rem 0.7rem; text-align:center; font-weight:600; white-space:nowrap; }
+    .results-table th.metric-col { text-align:left; min-width:160px; }
+    .results-table td { padding:0.5rem 0.7rem; text-align:center; border-bottom:1px solid #e8eef7; }
+    .results-table td.metric-col { text-align:left; font-weight:500; color:#444; }
+    .results-table tr:nth-child(even) td { background:#f4f7fc; }
+    .results-table .section-sep td { background:#dce5f5 !important; font-weight:600; color:var(--accent-dark); font-size:0.78rem; text-transform:uppercase; letter-spacing:0.04em; padding:0.3rem 0.7rem; }
+    .best { font-weight:700; color:var(--accent-dark); }
 
     /* ── Citation ── */
-    .bibtex-box {
-      background: #1e1e2e;
-      color: #cdd6f4;
-      border-radius: 10px;
-      padding: 1.4rem 1.6rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.85rem;
-      line-height: 1.7;
-      white-space: pre;
-      overflow-x: auto;
-    }
-    .copy-btn {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      padding: 0.4rem 0.9rem;
-      font-size: 0.82rem;
-      cursor: pointer;
-      margin-bottom: 0.6rem;
-      transition: background .18s;
-    }
-    .copy-btn:hover { background: var(--accent-dark); }
+    .bibtex-box { background:#1e1e2e; color:#cdd6f4; border-radius:10px; padding:1.4rem 1.6rem; font-family:'Courier New',monospace; font-size:0.85rem; line-height:1.7; white-space:pre; overflow-x:auto; }
+    .copy-btn { background:var(--accent); color:#fff; border:none; border-radius:6px; padding:0.4rem 0.9rem; font-size:0.82rem; cursor:pointer; margin-bottom:0.6rem; transition:background .18s; }
+    .copy-btn:hover { background:var(--accent-dark); }
 
     /* ── Footer ── */
-    footer {
-      background: #1a1a2e;
-      color: #aaa;
-      text-align: center;
-      padding: 1.4rem;
-      font-size: 0.85rem;
-    }
-    footer a { color: #7ea8f8; text-decoration: none; }
+    footer { background:#1a1a2e; color:#aaa; text-align:center; padding:1.4rem; font-size:0.85rem; }
+    footer a { color:#7ea8f8; text-decoration:none; }
 
-    @media (max-width: 640px) {
-      .paper-title { font-size: 1.45rem; }
-      .authors { font-size: 0.95rem; }
+    @media(max-width:640px){
+      .paper-title { font-size:1.45rem; }
+      .authors { font-size:0.95rem; }
     }
   </style>
 </head>
@@ -365,7 +122,7 @@
 <!-- ══════════════ NAV ══════════════ -->
 <nav class="navbar" role="navigation">
   <div class="container">
-    <div class="navbar-menu is-active" style="justify-content:center; flex-wrap:wrap; gap:0.2rem; padding:0.4rem 0;">
+    <div class="navbar-menu is-active" style="justify-content:center;flex-wrap:wrap;gap:0.2rem;padding:0.4rem 0;">
       <a class="navbar-item" href="#abstract">Abstract</a>
       <a class="navbar-item" href="#method">Method</a>
       <a class="navbar-item" href="#dataset">Dataset</a>
@@ -411,120 +168,74 @@
       </a>
     </div>
 
-    <!-- Key stats -->
     <div class="stats-bar">
-      <div class="stat-card">
-        <div class="stat-number">9,077</div>
-        <div class="stat-label">QA Pairs</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">1,601</div>
-        <div class="stat-label">CT Volumes</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">6</div>
-        <div class="stat-label">Spatial Categories</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">8</div>
-        <div class="stat-label">VLMs Benchmarked</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">95%</div>
-        <div class="stat-label">Human Consensus</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">&lt;44%</div>
-        <div class="stat-label">Best Accuracy</div>
-      </div>
+      <div class="stat-card"><div class="stat-number">9,077</div><div class="stat-label">QA Pairs</div></div>
+      <div class="stat-card"><div class="stat-number">1,601</div><div class="stat-label">CT Volumes</div></div>
+      <div class="stat-card"><div class="stat-number">6</div><div class="stat-label">Spatial Categories</div></div>
+      <div class="stat-card"><div class="stat-number">8</div><div class="stat-label">VLMs Benchmarked</div></div>
+      <div class="stat-card"><div class="stat-number">95%</div><div class="stat-label">Human Consensus</div></div>
+      <div class="stat-card"><div class="stat-number">&lt;44%</div><div class="stat-label">Best Accuracy</div></div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════ ABSTRACT ══════════════ -->
 <section class="content-section" id="abstract">
-  <div class="container" style="max-width:820px;">
+  <div class="container" style="max-width:860px;">
     <div class="section-title">Abstract</div>
-    <div class="abstract-box">
-      Recent advances in 3D medical vision–language models have enabled joint reasoning over volumetric images
-      and text, showing strong performance in medical visual question-answering (VQA) and report generation.
-      Despite this progress, it remains unclear whether these models learn spatially grounded anatomy from 3D
-      volumes or rely primarily on learned priors and language correlations.
-      <br><br>
-      To address this gap, we introduce <strong>CT-SpatialVQA</strong>, a benchmark designed to evaluate
-      semantic–spatial reasoning in 3D CT data. The benchmark comprises <strong>9,077 clinically grounded
-      QA pairs</strong> derived from 1,601 radiology reports and CT volumes, validated via a robust
-      LLM-assisted pipeline with a <strong>95% human consensus agreement rate</strong>. Our dataset requires
-      explicit anatomical localization, laterality awareness, structural comparison, and 3D inter-structure
-      relational reasoning. We benchmark eight 3D medical VLMs, finding severe degradation on
-      semantic-spatial reasoning, averaging <strong>34% accuracy</strong> and often below random — highlighting
-      the need for deeper integration of volumetric evidence for trustworthy clinical use.
-    </div>
+    <p style="font-size:1.02rem;line-height:1.8;color:#333;margin-bottom:2rem;">
+      Do 3D medical VLMs truly understand volumetric space — or do they rely on language priors?
+      We introduce <strong>CT-SpatialVQA</strong>, a benchmark of <strong>9,077 clinically grounded QA pairs</strong>
+      from 1,601 CT volumes that demands explicit spatial reasoning. Eight state-of-the-art models average
+      only <strong>34% accuracy</strong>, often below random chance, revealing a critical gap between
+      linguistic fluency and volumetric spatial understanding.
+    </p>
 
-    <div style="margin-top:1.8rem;">
-      <div class="section-title">Contributions</div>
-      <ul class="contrib-list">
-        <li>
-          <div class="contrib-num">1</div>
-          <div class="contrib-text">
-            <strong>CT-SpatialVQA Benchmark.</strong> We introduce CT-SpatialVQA, a benchmark for
-            systematically evaluating semantic-spatial reasoning in 3D medical VLMs using volumetric CT data
-            and clinically grounded QA pairs.
-          </div>
-        </li>
-        <li>
-          <div class="contrib-num">2</div>
-          <div class="contrib-text">
-            <strong>Spatially-Grounded QA Design.</strong> We generate clinically grounded QA pairs from
-            radiology reports through an LLM-based pipeline comprising generation, validation, and human
-            auditing — covering anatomical localization, laterality, structural comparison, and 3D
-            inter-structure reasoning.
-          </div>
-        </li>
-        <li>
-          <div class="contrib-num">3</div>
-          <div class="contrib-text">
-            <strong>Comprehensive Evaluation.</strong> We evaluate eight 3D medical VLMs on CT-SpatialVQA,
-            quantifying semantic–spatial reasoning capabilities and identifying failure modes that reveal
-            over-reliance on prior knowledge instead of volumetric visual grounding.
-          </div>
-        </li>
-      </ul>
+    <div class="contrib-cards">
+      <div class="contrib-card">
+        <div class="icon-wrap"><i class="fas fa-database"></i></div>
+        <h4>CT-SpatialVQA Benchmark</h4>
+        <p>9,077 spatially grounded QA pairs from 1,601 CT volumes with 95% human consensus</p>
+      </div>
+      <div class="contrib-card">
+        <div class="icon-wrap"><i class="fas fa-brain"></i></div>
+        <h4>Spatially-Grounded QA Design</h4>
+        <p>LLM-based generation, independent validation, and medical human auditing across 6 spatial dimensions</p>
+      </div>
+      <div class="contrib-card">
+        <div class="icon-wrap"><i class="fas fa-chart-bar"></i></div>
+        <h4>Comprehensive Evaluation</h4>
+        <p>8 medical VLMs benchmarked with LLM-as-Jury and text metrics, revealing consistent failure modes</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════ METHOD ══════════════ -->
 <section class="content-section" id="method">
-  <div class="container" style="max-width:900px;">
-    <div class="section-title">Method &amp; Dataset</div>
+  <div class="container" style="max-width:960px;">
+    <div class="section-title">Method</div>
 
     <div class="figure-container">
-      <img src="figures/ct_spatial_vqa_setup.png" alt="CT-SpatialVQA Pipeline Overview" />
+      <img src="figures/ct_spatial_vqa_setup.png" alt="CT-SpatialVQA Pipeline Overview" style="max-width:88%;" />
       <p class="figure-caption">
-        <strong>Overview of CT-SpatialVQA.</strong>
-        (<em>top</em>) The dataset generation pipeline uses 3D CT scans and paired radiology reports to prompt
-        a &ldquo;QA Generator LLM&rdquo;, synthesizing candidate spatially-grounded QA pairs. An independent
-        QA Validator LLM filters the candidates, followed by medical human auditors to produce the final benchmark.
-        (<em>bottom</em>) The evaluation protocol tests each 3D medical VLM by inputting a 3D CT scan and a
-        spatially-grounded question, with LLM-based evaluation and traditional text metrics assessing the output.
+        <strong>CT-SpatialVQA pipeline.</strong>
+        (top) QA generation: CT scans + radiology reports → Generator LLM → Validator LLM → human auditors → benchmark.
+        (bottom) Evaluation: 3D CT + question → VLM → LLM-as-Jury + text metrics.
       </p>
     </div>
 
     <div class="figure-container" style="margin-top:2.5rem;">
-      <img src="figures/ct_rep_qa.png" alt="Example CT scan, radiology report, and QA pairs" />
+      <img src="figures/ct_rep_qa.png" alt="Example CT scan with radiology report and QA pairs" />
       <p class="figure-caption">
-        <strong>Illustrative Example.</strong> A 3D CT scan, its corresponding full radiology report, and
-        representative spatially-grounded QA pairs drawn from the CT-SpatialVQA benchmark.
+        <strong>Example.</strong> A CT scan, its paired radiology report, and representative spatially-grounded QA pairs.
       </p>
     </div>
 
     <div class="figure-container" style="margin-top:2.5rem;">
-      <img src="figures/ct_qa_pred.png" alt="Model prediction examples showing spatial reasoning failures" />
+      <img src="figures/ct_qa_pred.png" alt="Model prediction failures on spatial reasoning" />
       <p class="figure-caption">
-        <strong>Spatial Reasoning Failures.</strong> Current 3D medical VLMs struggle to answer spatially
-        grounded questions, highlighting limitations in spatial reasoning and raising concerns about their
-        reliability for clinically meaningful use.
+        <strong>Spatial reasoning failures.</strong> All three models answer incorrectly on spatially grounded questions despite varying question types.
       </p>
     </div>
   </div>
@@ -535,77 +246,13 @@
   <div class="container" style="max-width:960px;">
     <div class="section-title">Dataset</div>
 
-    <p style="color:#444; line-height:1.75; margin-bottom:1.5rem;">
-      CT-SpatialVQA is built on the <strong>CT-RATE</strong> dataset (test split) — 1,601 volumetric CT scans
-      paired with board-certified radiology reports. Using GPT-4o as the Generator LLM and Gemini 2.5 Flash as
-      the Validator LLM, we constructed <strong>9,077 spatially grounded QA pairs</strong> averaging
-      5.67 pairs per report. The dataset is publicly available on HuggingFace.
-    </p>
-
-    <div style="text-align:center; margin-bottom:2rem;">
-      <a class="link-btn hf" href="https://huggingface.co/datasets/Mashrafi2827/CT-SpatialVQA" target="_blank" style="font-size:1rem; padding:0.6rem 1.5rem;">
-        🤗 Access Dataset on HuggingFace
+    <div style="text-align:center;margin-bottom:2rem;">
+      <a class="link-btn hf" href="https://huggingface.co/datasets/Mashrafi2827/CT-SpatialVQA" target="_blank" style="font-size:1rem;padding:0.6rem 1.6rem;">
+        🤗 Access on HuggingFace
       </a>
     </div>
 
-    <!-- Spatial Categories -->
-    <h3 style="font-size:1.15rem; font-weight:700; color:#1a1a2e; margin-bottom:1rem;">Six Spatial Reasoning Categories</h3>
-    <div class="dataset-grid">
-      <div class="dataset-card">
-        <span class="cat-num">01</span>
-        <h4>Laterality &amp; Bilateral Symmetry</h4>
-        <p>Left/right/bilateral grounding relative to the sagittal midline. Prevents laterality inversion and aids hallucination detection.</p>
-      </div>
-      <div class="dataset-card">
-        <span class="cat-num">02</span>
-        <h4>Longitudinal (Vertical) Position</h4>
-        <p>Superior/inferior axis positioning. Requires volumetric integration along the cranio-caudal axis and slice-level consistency.</p>
-      </div>
-      <div class="dataset-card">
-        <span class="cat-num">03</span>
-        <h4>Anterior-Posterior (Depth) Relations</h4>
-        <p>Front/back orientation across the axial stack. Preserves depth cues essential for compartment-level reasoning.</p>
-      </div>
-      <div class="dataset-card">
-        <span class="cat-num">04</span>
-        <h4>Medial-Lateral Orientation (Centricity)</h4>
-        <p>Central vs. peripheral localization within anatomical reference frames across the full volume.</p>
-      </div>
-      <div class="dataset-card">
-        <span class="cat-num">05</span>
-        <h4>Adjacency &amp; Containment</h4>
-        <p>Topological relations: distinguishing structures that are touching from those contained within anatomical boundaries.</p>
-      </div>
-      <div class="dataset-card">
-        <span class="cat-num">06</span>
-        <h4>Spatial Extent &amp; Boundaries</h4>
-        <p>Tracks spatial continuity, confinement, and compartment crossing to model disease spread accurately.</p>
-      </div>
-    </div>
-
-    <!-- Sample QA pairs -->
-    <h3 style="font-size:1.15rem; font-weight:700; color:#1a1a2e; margin:1.8rem 0 1rem;">Sample QA Pairs</h3>
-    <div class="qa-example">
-      <span class="cat-tag">Anterior-Posterior Relations</span>
-      <div class="q">Q: Where is the loculated cystic lesion located relative to the ascending aorta?</div>
-      <div class="a">A: In the anterior neighborhood of the ascending aorta.</div>
-    </div>
-    <div class="qa-example">
-      <span class="cat-tag">Laterality &amp; Bilateral Symmetry</span>
-      <div class="q">Q: Is the consolidation area found in the right or left lung?</div>
-      <div class="a">A: In the right lung.</div>
-    </div>
-    <div class="qa-example">
-      <span class="cat-tag">Adjacency &amp; Containment</span>
-      <div class="q">Q: Where are space-occupying lesions located in relation to the ribs?</div>
-      <div class="a">A: Anteriorly at the sternal junctions of the 2nd and 3rd ribs.</div>
-    </div>
-
-    <!-- CT Volume Visualization -->
-    <h3 style="font-size:1.15rem; font-weight:700; color:#1a1a2e; margin:1.8rem 0 1rem;">CT Volume Visualization</h3>
-    <p style="color:#555; font-size:0.9rem; margin-bottom:1rem;">
-      Each benchmark case is a full 3D CT volume. Below are axial, coronal, and sagittal views of an example case.
-    </p>
+    <!-- CT volume GIFs -->
     <div class="gif-grid">
       <div class="gif-card">
         <img src="https://raw.githubusercontent.com/BioMedIA-MBZUAI/CT-SpatialVQA/main/valid_1005_axial.gif" alt="Axial view" onerror="this.style.display='none'" />
@@ -621,14 +268,60 @@
       </div>
     </div>
 
-    <!-- Schema -->
-    <h3 style="font-size:1.15rem; font-weight:700; color:#1a1a2e; margin:1.8rem 0 0.8rem;">JSONL Schema</h3>
-    <div class="code-block">{"case_id": "valid_1005", "image_path": "valid_1005/", "question": "Where is the loculated cystic lesion located relative to the ascending aorta?", "answer": "In the anterior neighborhood of the ascending aorta."}</div>
+    <!-- Spatial Categories -->
+    <h3 style="font-size:1.1rem;font-weight:700;color:#1a1a2e;margin:2rem 0 1rem;">Six Spatial Reasoning Categories</h3>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <div class="cat-icon">↔️</div>
+        <span class="cat-num-badge">01</span>
+        <div class="cat-name">Laterality &amp; Bilateral Symmetry</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">↕️</div>
+        <span class="cat-num-badge">02</span>
+        <div class="cat-name">Longitudinal (Vertical) Position</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">⬛</div>
+        <span class="cat-num-badge">03</span>
+        <div class="cat-name">Anterior-Posterior (Depth) Relations</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🎯</div>
+        <span class="cat-num-badge">04</span>
+        <div class="cat-name">Medial-Lateral Orientation (Centricity)</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🔗</div>
+        <span class="cat-num-badge">05</span>
+        <div class="cat-name">Adjacency &amp; Containment</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">📐</div>
+        <span class="cat-num-badge">06</span>
+        <div class="cat-name">Spatial Extent &amp; Boundaries</div>
+      </div>
+    </div>
 
-    <p style="color:#555; font-size:0.88rem; margin-top:0.5rem;">
-      CT volumes are not distributed directly. Use the CT-RATE download script included in the repository:
-      <code style="background:#f0f4ff; padding:0.1rem 0.4rem; border-radius:4px;">python dataset/download_ctrate_dataset.py</code>
-    </p>
+    <!-- Sample QA pairs -->
+    <h3 style="font-size:1.1rem;font-weight:700;color:#1a1a2e;margin:2rem 0 1rem;">Sample QA Pairs</h3>
+    <div class="qa-grid">
+      <div class="qa-card">
+        <span class="cat-tag">Anterior-Posterior</span>
+        <div class="q">Where is the loculated cystic lesion located relative to the ascending aorta?</div>
+        <div class="a">In the anterior neighborhood of the ascending aorta.</div>
+      </div>
+      <div class="qa-card">
+        <span class="cat-tag">Laterality</span>
+        <div class="q">Is the consolidation area found in the right or left lung?</div>
+        <div class="a">In the right lung.</div>
+      </div>
+      <div class="qa-card">
+        <span class="cat-tag">Adjacency &amp; Containment</span>
+        <div class="q">Where are space-occupying lesions located in relation to the ribs?</div>
+        <div class="a">Anteriorly at the sternal junctions of the 2nd and 3rd ribs.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -637,32 +330,17 @@
   <div class="container" style="max-width:960px;">
     <div class="section-title">Results</div>
 
-    <p style="margin-bottom:1.2rem; color:#444; line-height:1.7;">
-      We benchmark eight state-of-the-art 3D medical VLMs in a zero-shot setting.
-      LLM-as-Jury uses GPT-4o, Gemini 2.5 Flash, and Qwen3 as independent binary judges.
-      All models fall below 50% accuracy, with the best model (CT-Chat) achieving only <strong>43.69%</strong>.
-    </p>
-
     <div class="results-table-wrap">
       <table class="results-table">
         <thead>
           <tr>
             <th class="metric-col">Metric</th>
-            <th>CT-Chat</th>
-            <th>MERLIN</th>
-            <th>Med3DVLM</th>
-            <th>M3D</th>
-            <th>RadFM</th>
-            <th>VILA-M3</th>
-            <th>MedGemma</th>
-            <th>MedEvalKit</th>
-            <th>Avg.</th>
+            <th>CT-Chat</th><th>MERLIN</th><th>Med3DVLM</th><th>M3D</th>
+            <th>RadFM</th><th>VILA-M3</th><th>MedGemma</th><th>MedEvalKit</th><th>Avg.</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="section-sep">
-            <td colspan="10">LLM-based Evaluation (Accuracy %)</td>
-          </tr>
+          <tr class="section-sep"><td colspan="10">LLM-based Evaluation (Accuracy %)</td></tr>
           <tr>
             <td class="metric-col">LLM as Judge (Gemini)</td>
             <td class="best">44.68</td><td>29.85</td><td>34.55</td><td>33.04</td>
@@ -683,9 +361,7 @@
             <td class="best"><strong>43.69</strong></td><td>28.85</td><td>31.44</td><td>30.57</td>
             <td>31.49</td><td>28.20</td><td>38.24</td><td>40.16</td><td><strong>34.08</strong></td>
           </tr>
-          <tr class="section-sep">
-            <td colspan="10">Text Similarity Metrics</td>
-          </tr>
+          <tr class="section-sep"><td colspan="10">Text Similarity Metrics</td></tr>
           <tr>
             <td class="metric-col">SBERT Cosine Sim.</td>
             <td>0.562</td><td>0.503</td><td>0.399</td><td>0.412</td>
@@ -711,22 +387,17 @@
     </div>
 
     <div class="figure-container" style="margin-top:2.5rem;">
-      <img src="figures/category_radar_plot.pdf" alt="Radar plot of category-level performance"
-           onerror="this.src='figures/ct_spatial_vqa_setup.png'" />
+      <img src="figures/category_radar_plot.pdf" alt="Radar plot"
+           onerror="this.src='figures/ct_spatial_vqa_setup.png'" style="max-width:75%;" />
       <p class="figure-caption">
-        <strong>Category-Level Analysis.</strong> Radar plot showing model performance across six spatial
-        reasoning categories in CT-SpatialVQA (LLM-as-Jury). Performance drops most sharply for vertical and
-        depth-oriented reasoning, suggesting models struggle most with relations that require consistent
-        volumetric representations.
+        <strong>Category-level performance</strong> (LLM-as-Jury). Sharpest drops in vertical and depth-oriented reasoning.
       </p>
     </div>
 
     <div class="figure-container" style="margin-top:2rem;">
-      <img src="figures/qa_pred_dist.png" alt="Distribution of word counts in questions and answers" />
+      <img src="figures/qa_pred_dist.png" alt="Answer length distribution" style="max-width:80%;" />
       <p class="figure-caption">
-        <strong>Answer Length Distribution.</strong> Distribution of word counts in questions, ground-truth
-        answers, and model predictions. Most models produce concise responses; CT-Chat, MedEvalKit, and
-        MedGemma generate comparatively longer answers.
+        <strong>Answer length distribution.</strong> Questions, ground-truth answers, and model predictions across all 8 VLMs.
       </p>
     </div>
   </div>
@@ -736,7 +407,6 @@
 <section class="content-section" id="citation">
   <div class="container" style="max-width:820px;">
     <div class="section-title">Citation</div>
-    <p style="margin-bottom:0.8rem; color:#444;">If you find CT-SpatialVQA useful in your research, please cite:</p>
     <button class="copy-btn" onclick="copyBibtex()">
       <i class="fas fa-copy"></i> Copy BibTeX
     </button>
@@ -759,7 +429,7 @@
     <a href="https://huggingface.co/datasets/Mashrafi2827/CT-SpatialVQA" target="_blank">HuggingFace</a> &nbsp;·&nbsp;
     <a href="https://github.com/BioMedIA-MBZUAI/CT-SpatialVQA" target="_blank">GitHub</a>
   </p>
-  <p style="margin-top:0.3rem; font-size:0.78rem; color:#777;">
+  <p style="margin-top:0.3rem;font-size:0.78rem;color:#777;">
     Website template inspired by <a href="https://nerfies.github.io" target="_blank">Nerfies</a>.
   </p>
 </footer>
